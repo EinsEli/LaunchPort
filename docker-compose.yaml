@@ -7,7 +7,7 @@ services:
       POSTGRES_DB: "launchport"
     
   app:
-    image: git.einseli.me/einseli/launchport
+    image: ghcr.io/einseli/launchport:latest
     environment:
       DATABASE_URL: "postgresql://launchport:launchport@postgres:5432/launchport?schema=public"
       AUTH_URL: "http://localhost:3000"
