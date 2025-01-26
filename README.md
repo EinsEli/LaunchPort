@@ -17,7 +17,7 @@
 
 ## 🚀 What is LaunchPort
 
-LaunchPort simplifies access and management of your applications by providing a user-friendly control dashboard.
+LaunchPort simplifies access and management of your applications by providing a user-friendly control dashboard.  
 When paired with a reverse proxy like [SWAG](https://docs.linuxserver.io/images/docker-swag/), LaunchPort handles requests to inactive applications by redirecting users to a dedicated control page.
 
 <br/>
@@ -40,6 +40,33 @@ LaunchPort can be installed using Docker.
 | `DATABASE_URL`       | The database URL in the format: <br/> `postgresql://user:password@host:port/database?schema=public` |
 | `AUTH_URL`           | The URL for accessing LaunchPort.                                                              |
 | `AUTH_SECRET`        | A secret used for authentication purposes.                                                                   |
+
+<br/>
+
+### 🔗 Configuring the Reverse Proxy
+
+To allow LaunchPort to redirect requests, you must configure your Reverse Proxy so that it redirects  
+users to your LaunchPort instance in case of a Bad Gateway error. If you are using SWAG / Nginx you can follow these steps:
+
+1. Create a file `launchport.conf`
+
+```conf
+error_page 502 =302 https://launchport.example.com/redirect?origin=$target_url;
+```
+
+2. For each site you want LaunchPort to cover, include the created file in the location block.
+```conf
+location / {
+	# LaunchPort
+	include /config/nginx/launchport.conf;
+	
+	# enable the next two lines for http auth
+	#auth_basic "Restricted";
+	#auth_basic_user_file /config/nginx/.htpasswd;
+
+	#...
+}
+```
 
 <br/>
 
@@ -67,4 +94,5 @@ LaunchPort can be installed using Docker.
 
 > [!NOTE]
 > This project is my first public project and I am still learning a long the way.  
-> Feel free to contribute and help improve this project for everyone!
+> Feel free to contribute by fixing bugs, adding new features, improving the code quality  
+> and help make LaunchPort better for everyone!
