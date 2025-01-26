@@ -65,6 +65,6 @@ LaunchPort can be installed using Docker.
 
 <br/>
 
-> [!NOTE] Contributing
-> This project is my first public project and I am still learning a long the way.
+> [!NOTE]
+> This project is my first public project and I am still learning a long the way.  
 > Feel free to contribute and help improve this project for everyone!
