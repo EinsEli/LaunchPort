@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: "launchport"
+      POSTGRES_PASSWORD: "launchport"
+      POSTGRES_DB: "launchport"
+    
+  app:
+    image: git.einseli.me/einseli/launchport
+    environment:
+      DATABASE_URL: "postgresql://launchport:launchport@postgres:5432/launchport?schema=public"
+      AUTH_URL: "http://localhost:3000"
+      AUTH_SECRET: "supersecretstring"
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3000:3000"
