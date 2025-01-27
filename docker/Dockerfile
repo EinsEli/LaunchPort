@@ -33,8 +33,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Set the commit SHA
-ARG GITHUB_SHA
-ENV COMMIT_SHA=$GITHUB_SHA
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
 
 COPY prisma ./prisma
 COPY --from=builder /app/public ./public
