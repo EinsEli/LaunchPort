@@ -25,3 +25,4 @@ jobs:
                   push: true
                   file: docker/Dockerfile
                   tags: ghcr.io/einseli/launchport:latest
+                  build-args: COMMIT_SHA=${{ github.sha }}
